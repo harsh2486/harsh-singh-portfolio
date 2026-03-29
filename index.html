@@ -188,10 +188,14 @@
             <h3 class="section-title-minimal">Direct Contact</h3>
             <div class="contact-box">
                 <p style="color: var(--text-muted); margin-bottom: 2rem;">If my technical architecture aligns with your team's needs, send me a direct message.</p>
-                <!-- Using a standard mailto action as placeholder, Formspree can be linked here later -->
-                <form class="direct-form" action="mailto:sharsh779@gmail.com" method="POST" enctype="text/plain">
+                <form class="direct-form" action="https://formsubmit.co/sharsh779@gmail.com" method="POST">
+                    <!-- Security / Anti-Spam settings for FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="New message from your Portfolio!">
+                    
                     <div class="form-row">
                         <input type="text" name="name" placeholder="Your Name" required class="form-input">
+
                         <input type="email" name="email" placeholder="Your Email" required class="form-input">
                     </div>
                     <textarea name="message" rows="5" placeholder="How can we work together?" required class="form-input"></textarea>
