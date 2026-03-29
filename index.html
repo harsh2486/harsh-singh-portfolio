@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Singh | Network Engineer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Interactive Background Canvas -->
+    <canvas id="network-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-trail"></div>
+
+    <div class="container container-wide">
+        
+        <!-- Hero Section -->
+        <section class="hero-section pop-up" id="home">
+            <h1 class="title-massive">Harsh Singh</h1>
+            <h2 class="subtitle-hero">
+                <span id="typewriter" class="highlight"></span><span class="blinking-cursor">|</span>
+            </h2>
+            <div class="contact-links-minimal pop-up delay-1">
+                <a href="mailto:sharsh779@gmail.com" class="minimal-link"><i class="fas fa-envelope"></i> Email</a>
+                <a href="tel:+919820534958" class="minimal-link"><i class="fas fa-phone"></i> Call</a>
+                <a href="#" class="minimal-link" style="cursor: auto;"><i class="fas fa-map-marker-alt"></i> Mumbai</a>
+            </div>
+        </section>
+
+        <!-- Experience Section (Scalable Grid Hover Cards) -->
+        <section class="minimal-section pop-up delay-1">
+            <h3 class="section-title-minimal">Experience</h3>
+            
+            <div class="card-grid">
+                
+                <!-- Job 1 -->
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-network-wired"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Network Project Engineer</span>
+                            <span class="card-context">Mahindra & Mahindra &bull; 2024 to Present</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <p>Lead end-to-end enterprise LAN/WAN network infrastructure projects from architecture design to final deployment. Successfully implemented Zscaler Zero Trust SD-WAN (ZTB) and currently driving Proof of Concept (PoC) for large-scale enterprise adoption. Completed over 15 network scaling projects within a single year.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-server"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Network Engineer L1</span>
+                            <span class="card-context">Mahindra & Mahindra &bull; 2023 to 2024</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <p>Delivered critical technical support for dynamic network incidents, achieving strict cross-site SLA compliance. Assisted senior engineers in the configurations and maintenance of multi-vendor routers and switches across various manufacturing plants. Monitored network performance and bandwidth analytics using SolarWinds and Wireshark.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Projects Section (Scalable Grid Hover Cards) -->
+        <section class="minimal-section pop-up delay-1">
+            <h3 class="section-title-minimal">Key Projects</h3>
+            
+            <div class="card-grid">
+                
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Zscaler Zero Trust</span>
+                            <span class="card-context">Implementation & PoC &bull; 2025</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <p>Deploying a cutting-edge secure networking architecture across widespread systems focusing on cloud-first user connectivity and threat mitigation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-globe-asia"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Core Infra Migration</span>
+                            <span class="card-context">Data Centers & Plants &bull; 2025</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <p>Managing the physical and logical replacement of massive Data Center core switches and PAN India manufacturing plant switches with zero allowed operational downtime.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Example Empty scalable card to show scalability -->
+                 <div class="grid-card pop-up-stagger" style="border: 2px dashed rgba(0,0,0,0.05); background: transparent; display: flex; align-items: center; justify-content: center; opacity: 0.6;">
+                    <div class="card-header" style="justify-content: center;">
+                        <span class="card-context" style="font-size: 1.1rem;"><i class="fas fa-plus"></i> Space for future projects</span>
+                    </div>
+                 </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="minimal-section pop-up delay-1">
+            <h3 class="section-title-minimal">Capabilities & Expertise</h3>
+            
+            <div class="card-grid">
+                
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-route"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Core Routing & SD-WAN</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <ul style="color: #475569; margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                                <li>OSPF, VLANs, NAT, ACLs</li>
+                                <li>Zscaler Zero Trust SD-WAN (ZTB)</li>
+                                <li>Citrix SD-WAN Architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card pop-up-stagger">
+                    <div class="card-header">
+                        <div class="header-icon"><i class="fas fa-lock"></i></div>
+                        <div class="header-text">
+                            <span class="card-title">Security & Vendors</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-inner">
+                            <ul style="color: #475569; margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                                <li>Fortinet 60F Firewalls</li>
+                                <li>Zscaler ZIA & ZPA deployments</li>
+                                <li>Cisco, HPE, and Juniper core hardware</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer / Education -->
+        <section class="minimal-section pop-up delay-1" style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem;">
+            <div style="font-weight: 500; color: #64748b; letter-spacing: 1px; font-size: 0.9rem;">
+                B.Sc. IT &mdash; Usha Pravin Gandhi College (2022) &nbsp;&bull;&nbsp; CCNA & Zscaler Certified
+            </div>
+        </section>
+
+        <footer>
+            <p>Interactive Scalable Grid Portfolio</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
