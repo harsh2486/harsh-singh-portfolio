@@ -265,4 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* --- 6. BFCache Form Reset --- */
+    // If the browser restores the page from the "Back" button memory, force reset the form.
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted && contactForm) {
+            contactForm.reset();
+        }
+    });
+
 });
