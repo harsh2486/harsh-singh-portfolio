@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,17 @@
     <!-- Interactive Background Canvas -->
     <canvas id="network-canvas"></canvas>
 
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Uptime Easter Egg Widget -->
+    <div id="uptime-widget">
+        <div class="status-dot"></div>
+        <span>Sys: Secure | Ping: <span id="ping-counter">12</span>ms</span>
+    </div>
+
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-trail"></div>
@@ -21,21 +32,31 @@
         
         <!-- Hero Section -->
         <section class="hero-section pop-up" id="home">
-            <h1 class="title-massive">Harsh Singh</h1>
-            <h2 class="subtitle-hero">
-                <span id="typewriter" class="highlight"></span><span class="blinking-cursor">|</span>
-            </h2>
+            <div class="hero-top">
+                <img src="profile.jpg" alt="Harsh Singh" class="hero-photo" onerror="this.style.display='none'">
+                <div class="hero-text-block">
+                    <h1 class="title-massive">Harsh Singh</h1>
+                    <h2 class="subtitle-hero">
+                        <span id="typewriter" class="highlight"></span><span class="blinking-cursor">|</span>
+                    </h2>
+                </div>
+            </div>
+            
+            <p class="hero-philosophy delay-1 pop-up">
+                "I believe in zero-downtime architecture. Whether I am configuring enterprise OSPF routing protocols or deploying Zscaler Zero Trust across India, my ultimate goal is building resilient, automated systems that never sleep."
+            </p>
+
             <div class="contact-links-minimal pop-up delay-1">
+                <a href="https://www.linkedin.com/in/harsh-singh-9549b4213" target="_blank" class="minimal-link linked-in"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="resume.pdf" download class="minimal-link download-btn"><i class="fas fa-file-pdf"></i> Download Resume</a>
                 <a href="mailto:sharsh779@gmail.com" class="minimal-link"><i class="fas fa-envelope"></i> Email</a>
                 <a href="tel:+919820534958" class="minimal-link"><i class="fas fa-phone"></i> Call</a>
-                <a href="#" class="minimal-link" style="cursor: auto;"><i class="fas fa-map-marker-alt"></i> Mumbai</a>
             </div>
         </section>
 
-        <!-- Experience Section (Scalable Grid Hover Cards) -->
+        <!-- Experience Section -->
         <section class="minimal-section pop-up delay-1">
             <h3 class="section-title-minimal">Experience</h3>
-            
             <div class="card-grid">
                 
                 <!-- Job 1 -->
@@ -73,10 +94,9 @@
             </div>
         </section>
 
-        <!-- Projects Section (Scalable Grid Hover Cards) -->
+        <!-- Projects Section -->
         <section class="minimal-section pop-up delay-1">
             <h3 class="section-title-minimal">Key Projects</h3>
-            
             <div class="card-grid">
                 
                 <div class="grid-card pop-up-stagger">
@@ -109,10 +129,10 @@
                     </div>
                 </div>
 
-                 <!-- Example Empty scalable card to show scalability -->
-                 <div class="grid-card pop-up-stagger" style="border: 2px dashed rgba(0,0,0,0.05); background: transparent; display: flex; align-items: center; justify-content: center; opacity: 0.6;">
-                    <div class="card-header" style="justify-content: center;">
-                        <span class="card-context" style="font-size: 1.1rem;"><i class="fas fa-plus"></i> Space for future projects</span>
+                 <!-- Empty scalable card -->
+                 <div class="grid-card empty-card pop-up-stagger">
+                    <div class="card-header" style="justify-content: center; width: 100%;">
+                        <span class="card-context" style="font-size: 1.1rem; text-align: center;"><i class="fas fa-plus"></i> Future scaling projects</span>
                     </div>
                  </div>
 
@@ -122,7 +142,6 @@
         <!-- Skills Section -->
         <section class="minimal-section pop-up delay-1">
             <h3 class="section-title-minimal">Capabilities & Expertise</h3>
-            
             <div class="card-grid">
                 
                 <div class="grid-card pop-up-stagger">
@@ -134,7 +153,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-inner">
-                            <ul style="color: #475569; margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
                                 <li>OSPF, VLANs, NAT, ACLs</li>
                                 <li>Zscaler Zero Trust SD-WAN (ZTB)</li>
                                 <li>Citrix SD-WAN Architecture</li>
@@ -152,7 +171,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-inner">
-                            <ul style="color: #475569; margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                            <ul style="color: var(--text-muted); margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
                                 <li>Fortinet 60F Firewalls</li>
                                 <li>Zscaler ZIA & ZPA deployments</li>
                                 <li>Cisco, HPE, and Juniper core hardware</li>
@@ -164,15 +183,32 @@
             </div>
         </section>
 
+        <!-- Direct Contact Form Section -->
+        <section class="minimal-section pop-up delay-1" id="contact">
+            <h3 class="section-title-minimal">Direct Contact</h3>
+            <div class="contact-box">
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">If my technical architecture aligns with your team's needs, send me a direct message.</p>
+                <!-- Using a standard mailto action as placeholder, Formspree can be linked here later -->
+                <form class="direct-form" action="mailto:sharsh779@gmail.com" method="POST" enctype="text/plain">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Your Name" required class="form-input">
+                        <input type="email" name="email" placeholder="Your Email" required class="form-input">
+                    </div>
+                    <textarea name="message" rows="5" placeholder="How can we work together?" required class="form-input"></textarea>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Initialize Connection</button>
+                </form>
+            </div>
+        </section>
+
         <!-- Footer / Education -->
-        <section class="minimal-section pop-up delay-1" style="border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem;">
-            <div style="font-weight: 500; color: #64748b; letter-spacing: 1px; font-size: 0.9rem;">
+        <section class="minimal-section pop-up delay-1" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <div style="font-weight: 500; color: var(--text-muted); letter-spacing: 1px; font-size: 0.9rem;">
                 B.Sc. IT &mdash; Usha Pravin Gandhi College (2022) &nbsp;&bull;&nbsp; CCNA & Zscaler Certified
             </div>
         </section>
 
         <footer>
-            <p>Interactive Scalable Grid Portfolio</p>
+            <p>Live Networking Portfolio &copy; 2026</p>
         </footer>
 
     </div>

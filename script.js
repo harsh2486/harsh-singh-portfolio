@@ -1,12 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* --- Theme Toggle (Dark / Light Mode) --- */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+    
+    // Check saved preference or default to light
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if(currentTheme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+
+    /* --- Uptime Easter Egg (Fake Ping) --- */
+    const pingCounter = document.getElementById('ping-counter');
+    if (pingCounter) {
+        setInterval(() => {
+            // Random ping between 8ms and 24ms
+            let randomPing = Math.floor(Math.random() * (24 - 8 + 1)) + 8;
+            pingCounter.textContent = randomPing;
+        }, 2500); // Updates every 2.5 seconds
+    }
+
+
     /* --- 1. Interactive Canvas Background (Network Particles) --- */
     const canvas = document.getElementById('network-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
     
-    // Mouse Interaction
     let mouse = { x: null, y: null, radius: 150 };
 
     window.addEventListener('mousemove', (e) => {
@@ -24,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         height = canvas.height = window.innerHeight;
         particles = [];
         
-        // Create nodes
         const numberOfParticles = (width * height) / 15000;
         for (let i = 0; i < numberOfParticles; i++) {
             let size = (Math.random() * 2) + 1;
@@ -32,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let y = Math.random() * (height - size * 2) + size * 2;
             let directionX = (Math.random() * 0.4) - 0.2;
             let directionY = (Math.random() * 0.4) - 0.2;
-            let color = 'rgba(59, 130, 246, 0.4)'; // Soft Accent Blue
+            let color = 'rgba(56, 189, 248, 0.5)'; // Cyber Blue
 
             particles.push(new Particle(x, y, directionX, directionY, size, color));
         }
@@ -56,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.x += this.directionX;
             this.y += this.directionY;
 
-            // Mouse interaction
             if (mouse.x && mouse.y) {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
@@ -73,10 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateCanvas() {
         requestAnimationFrame(animateCanvas);
         ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-        }
+        for (let i = 0; i < particles.length; i++) { particles[i].update(); }
         connectParticles();
     }
 
@@ -89,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (distance < (width/7) * (height/7)) {
                     opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = `rgba(59, 130, 246, ${opacityValue > 0 ? opacityValue * 0.2 : 0})`;
+                    ctx.strokeStyle = `rgba(56, 189, 248, ${opacityValue > 0 ? opacityValue * 0.3 : 0})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[a].x, particles[a].y);
@@ -114,34 +146,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function type() {
         const currentText = textArray[textIndex];
         
-        if (isDeleting) {
-            charIndex--;
-        } else {
-            charIndex++;
-        }
+        if (isDeleting) charIndex--;
+        else charIndex++;
 
         typeWriterElement.textContent = currentText.substring(0, charIndex);
 
         let typeSpeed = parseInt(Math.random() * 100) + 50;
-
-        if (isDeleting) { typeSpeed /= 2; }
+        if (isDeleting) typeSpeed /= 2;
 
         if (!isDeleting && charIndex === currentText.length) {
-            typeSpeed = 2000; // Pause at end
+            typeSpeed = 2000;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             textIndex = (textIndex + 1) % textArray.length;
-            typeSpeed = 500; // Pause before next word
+            typeSpeed = 500;
         }
         setTimeout(type, typeSpeed);
     }
-    setTimeout(type, 1000); // Start delay
+    setTimeout(type, 1000);
 
     /* --- 3. Custom Cursor Integration --- */
     const cursor = document.querySelector('.cursor');
     const cursorTrail = document.querySelector('.cursor-trail');
-    const interactiveElements = document.querySelectorAll('a, .minimal-link, .grid-card');
+    const interactiveElements = document.querySelectorAll('a, .minimal-link, .grid-card, .btn-submit, #theme-toggle');
     let trailX = 0, trailY = 0;
 
     if (window.innerWidth > 768) {
@@ -166,31 +194,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- 4. The WOW Pop-Up Scroll Animations --- */
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 
-    };
-
+    /* --- 4. Pop-Up Scroll Animations --- */
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const popObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                
-                // If this is a parent container, stagger its children sequentially
                 const children = entry.target.querySelectorAll('.pop-up-stagger');
                 children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.classList.add('active');
-                    }, index * 150); // 150ms delay between each child popping up
+                    setTimeout(() => child.classList.add('active'), index * 150);
                 });
-                
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    const popCards = document.querySelectorAll('.pop-up');
-    popCards.forEach(card => popObserver.observe(card));
+    document.querySelectorAll('.pop-up').forEach(card => popObserver.observe(card));
 });
