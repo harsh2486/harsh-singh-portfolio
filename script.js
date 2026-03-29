@@ -210,4 +210,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     document.querySelectorAll('.pop-up').forEach(card => popObserver.observe(card));
+
+    /* --- 5. AJAX Contact Form Submission --- */
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // UI Feedback: Sending
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending securely...';
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.pointerEvents = 'none';
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+                
+                const data = await response.json();
+
+                if (data.success) {
+                    // UI Feedback: Success
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Message Delivered!';
+                    submitBtn.style.backgroundColor = '#22c55e'; // Green success color
+                    submitBtn.style.opacity = '1';
+                    contactForm.reset();
+                    
+                    // Reset button after 5 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.style.pointerEvents = 'auto';
+                    }, 5000);
+                } else {
+                    throw new Error(data.message || 'API Error');
+                }
+            } catch (error) {
+                console.error(error);
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Delivery Failed. Try again.';
+                submitBtn.style.backgroundColor = '#ef4444'; // Red error color
+                submitBtn.style.opacity = '1';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.style.pointerEvents = 'auto';
+                }, 5000);
+            }
+        });
+    }
+
 });

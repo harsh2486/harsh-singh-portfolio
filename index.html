@@ -230,19 +230,17 @@
             <h3 class="section-title-minimal">Direct Contact</h3>
             <div class="contact-box">
                 <p style="color: var(--text-muted); margin-bottom: 2rem;">If my technical architecture aligns with your team's needs, send me a direct message.</p>
-                <form class="direct-form" action="https://api.web3forms.com/submit" method="POST">
+                <form class="direct-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
                     <!-- Web3Forms API Key & Settings -->
                     <input type="hidden" name="access_key" value="3dac8f26-fe97-46ed-8cb7-96e944ed8d4e">
                     <input type="hidden" name="subject" value="New message from your Portfolio!">
-                    <input type="hidden" name="redirect" value="https://harsh2486.github.io/harsh-singh-portfolio/">
                     
                     <div class="form-row">
                         <input type="text" name="name" placeholder="Your Name" required class="form-input">
-
                         <input type="email" name="email" placeholder="Your Email" required class="form-input">
                     </div>
                     <textarea name="message" rows="5" placeholder="How can we work together?" required class="form-input"></textarea>
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Initialize Connection</button>
+                    <button type="submit" id="submit-btn" class="btn-submit"><i class="fas fa-paper-plane"></i> Initialize Connection</button>
                 </form>
             </div>
         </section>
